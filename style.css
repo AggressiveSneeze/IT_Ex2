@@ -1,0 +1,55 @@
+body {
+    background-color: #3399CC;
+}
+
+#login {
+	/*display:inline-block; */
+    margin-left:10em;
+    /*border-style:solid; */   
+}
+#login input {
+	border-style: solid;
+}
+input[type=submit] {
+	border-radius: 7px;
+	border-style: solid;
+	border-color: white;
+	border-width: 3px;
+	width: 75px;
+	color: white;
+	background-color: #3366FF;
+}
+	
+
+#name {
+	text-decoration: underline;
+	font-size: 180%;
+	color: white;
+}
+
+#info {	
+	color: white;
+
+}
+p {
+	/*margin-top: 100px;
+    margin-bottom: 100px; */
+    width:250px;
+    color:white;
+	
+}
+
+table {
+	color:white;
+}
+
+img {
+	float: right;
+	width: 30%;
+	transform: translate(0px,-67px) rotate(+10deg);
+}
+caption {	
+	font-weight:bolder;
+	text-decoration: underline;
+	}
+	
