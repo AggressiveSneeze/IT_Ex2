@@ -1,13 +1,6 @@
 //Author: James Adams
 
-// var screenEnum = {
-// 		initial:0,
-// 		login:1,
-// 		profile:2,
-// 		calculator:3,
-// }
-
-//init stuff - enters here when page has been loaded/every time page is refreshed.
+//init stuff - enters here the first time the page loads.
 document.addEventListener("DOMContentLoaded", function() {		
       	  if (!sessionStorage['done']) {
        		sessionStorage['done'] = 'yes';
@@ -16,10 +9,10 @@ document.addEventListener("DOMContentLoaded", function() {
   		  }
 });
 
-//listeners.
-
-
-
+//warn on refresh/page close. 
+window.onbeforeunload = function() {
+  return "Refresh/data storage between instances has not been implemented, as it was not mentioned in the assignment spec. Open the application in a new tab to start over.";
+};
 //transfer functions
 
 function login_to_profile() {
@@ -28,10 +21,15 @@ function login_to_profile() {
 	y=document.getElementById("login_form");
 	x.removeChild(y);
 	//do something here to add the profile page.
-	txt="<p> potato <\p>";
-	txt=txt+"<button onclick='return profile_to_login()'>Logout</button>"
+	txt="<button onclick='return profile_to_login()'>Logout</button>"
 	txt=txt+"<button onclick='return profile_to_calculator()'>Calculator</button>"
-	$("#profile").append(txt);
+	var profile = "<H2>Welcome to James Adams' Calculator Extravaganza!</H2>\
+	<p> In my free time, I like to go rock climbing, hiking, or play guitar.</p> \
+<p>\"You don't have to be smart to laugh at farts, but you have to be stupid not to.\" - Louis C.K . </p>\
+<img src=\"climbing.jpg\" width ='560' height = '560' onmouseover=\"this.src='james.jpg'\" onmouseout=\"this.src='climbing.jpg'\" />\
+";
+	$("#profile").append(txt,profile);
+	//generate_profile();
 }
 
 function profile_to_calculator() {
