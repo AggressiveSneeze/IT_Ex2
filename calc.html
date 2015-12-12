@@ -1,31 +1,36 @@
 <HTML>
 <head></head>
 <body>
+<div id="calc_INSERTID">
 <p>
-<input type="text" readonly size="18" id="d">
+<input type="text" readonly size="18" id="value_calc_INSERTID">
 </p>
 <p>
-<input type="button" value="1">
-<input type="button" value="2">
-<input type="button" value="3">
-<input type="button" value="+">
+<input type="button" value="1" onclick="calc_add('1')">
+<input type="button" value="2" onclick="calc_add('2')">
+<input type="button" value="3" onclick="calc_add('3')">
+<input type="button" value="+" onclick="calc_add('+')">
 
 </p>
 <p>
-<input type="button" value="4">
-<input type="button" value="5">
-<input type="button" value="6">
-<input type="button" value="-">
+<input type="button" value="4" onclick="calc_add('4')">
+<input type="button" value="5" onclick="calc_add('5')">
+<input type="button" value="6" onclick="calc_add('6')">
+<input type="button" value="-" onclick="calc_add('-')">
 </p>
 <p>
-<input type="button" value="7">
-<input type="button" value="8">
-<input type="button" value="9">
-<input type="button" value="*"></button>
+<input type="button" value="7" onclick="calc_add('7')">
+<input type="button" value="8" onclick="calc_add('8')">
+<input type="button" value="9" onclick="calc_add('9')">
+<input type="button" value="*" onclick="calc_add('*')"></button>
 </p>
-<input type="button" value="/"></button> 
-<input type="button" value="("></button>
-<input type="button" value=")"></button>
+<input type="button" value="/" onclick="calc_add('/')" ></button> 
+<input type="button" value="(" onclick="calc_add('(')"></button>
+<input type="button" value=")" onclick="calc_add(')')"></button>
+<input type="button" value="=" onclick="calc_parse()">
+<input type="button" value="C" onclick="calc_replace(' ')">
+</div>
 </body>
+
 
 </HTML>

@@ -40,7 +40,7 @@ function profile_to_calculator() {
     heading.innerHTML = "Calculator page!";
     button="<button onclick='return generate_calc()'>New Calculator</button>";
     $("#calc").append(heading,button);
-    var calculators[];
+    calculators=[];
     generate_calc();
 }
 
@@ -88,34 +88,109 @@ function validateForm() {
 //Calc functions/class/object
 
 //use math library from mathjs.org
-function Calc () {
+function Calc (id) {
+	this.id=id;
 	this.value=0;
 }
  
-Calc.prototype.parse = function(string) {
-	this.value=math.eval(string);
+Calc.prototype.parse = function() {
+	var new_value=math.eval(document.getElementById("value_calc_"+this.id).value);
+	this.replace(new_value);
+	this.value=new_value;
 };
 
-function c(val)
-{ 
-document.getElementById("d").value=val;
-}
-function v(val)
+Calc.prototype.replace = function (val)
 {
-document.getElementById("d").value+=val;
+	document.getElementById("value_calc_"+this.id).value=val;
+	this.value=val;
 }
-function e() 
-{ 
-  c(eval(document.getElementById("d").value)) 
+Calc.prototype.add = function(val) 
+{
+	document.getElementById("value_calc_"+this.id).value+=val;
+	this.value+=val;
 }
 
-
+//http://www.accessify.com/tools-and-wizards/developer-tools/html-javascript-convertor/
 function generate_calc() {
 	var calc_num = calculators.length;
 	//specialise the text.
-	var text='';
-$("#calc").append(text);
-calculators[calc_num]=new Calc();
+var calc="";
+//calc += "<div id=\"ID\">";
+//ensure proper calc id gets inserted.
+calc +="<div id='"
+calc +=calc_num;
+calc +="'>";
+calc += "<p>";
+calc +="<input type=\"text\" readonly size=\"18\" id=\'value_calc_";
+calc+=calc_num
+calc+="'>";
+calc += "<\/p>";
+calc += "<p>";
+calc += "<input type=\"button\" value=\"1\" onclick=\"calculators[";
+calc+= calc_num;
+calc+="].add('1')\">";
+calc += "<input type=\"button\" value=\"2\" onclick=\"calculators[";
+calc+= calc_num;
+calc+="].add('2')\">";
+calc += "<input type=\"button\" value=\"3\" onclick=\"calculators[";
+calc+= calc_num;
+calc+="].add('3')\">";
+calc += "<input type=\"button\" value=\"+\" onclick=\"calculators[";
+calc+= calc_num;
+calc+="].add('+')\">";
+calc += "<\/p>";
+calc += "<p>";
+calc += "<input type=\"button\" value=\"4\" onclick=\"calculators[";
+calc+= calc_num;
+calc+="].add('4')\">";
+calc += "<input type=\"button\" value=\"5\" onclick=\"calculators[";
+calc+= calc_num;
+calc+="].add('5')\">";
+calc += "<input type=\"button\" value=\"6\" onclick=\"calculators[";
+calc+= calc_num;
+calc+="].add('6')\">";
+calc += "<input type=\"button\" value=\"-\" onclick=\"calculators[";
+calc+= calc_num;
+calc+="].add('-')\">";
+calc += "<\/p>";
+calc += "<p>";
+calc += "<input type=\"button\" value=\"7\" onclick=\"calculators[";
+calc+= calc_num;
+calc+="].add('7')\">";
+calc += "<input type=\"button\" value=\"8\" onclick=\"calculators[";
+calc+= calc_num;
+calc+="].add('8')\">";
+calc += "<input type=\"button\" value=\"9\" onclick=\"calculators[";
+calc+= calc_num;
+calc+="].add('9')\">";
+calc += "<input type=\"button\" value=\"*\" onclick=\"calculators[";
+calc+= calc_num;
+calc+="].add('*')\">";
+calc += "<\/p>";
+
+calc += "<input type=\"button\" value='/' onclick=\"calculators[";
+calc+= calc_num;
+calc+="].add('/')\">";
+calc += "<input type=\"button\" value=\"(\" onclick=\"calculators[";
+calc+= calc_num;
+calc+="].add('(')\">";
+calc += "<input type=\"button\" value=\")\" onclick=\"calculators[";
+calc+= calc_num;
+calc+="].add(')')\">";
+calc +="<input type=\"button\" value=\"=\" onclick=\"calculators[";
+calc+=calc_num;
+calc+="].parse()\">";
+
+//calc += "<input type=\"button\" value=\"=\" onclick=\"calc_parse()\">";
+calc += "<input type=\"button\" value=\"C\" onclick=\"calculators[";
+calc+=calc_num;
+calc+="].replace(' ')\">";
+
+//calc += "<input type=\"button\" value=\"C\" onclick=\"calc_replace(' ')\">";
+calc += "<\/div>";
+calc+="<hr>";
+$("#calc").append(calc);
+calculators[calc_num]=new Calc(calc_num);
 return false;
 }
 
