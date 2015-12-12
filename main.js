@@ -23,18 +23,25 @@ document.addEventListener("DOMContentLoaded", function() {
 //transfer functions
 
 function login_to_profile() {
+	//this can also be done by just deleted the form as in profile_to_login.
 	x=document.getElementById("login");
 	y=document.getElementById("login_form");
 	x.removeChild(y);
 	//do something here to add the profile page.
 	txt="<p> potato <\p>";
 	txt=txt+"<button onclick='return profile_to_login()'>Logout</button>"
+	txt=txt+"<button onclick='return profile_to_calculator()'>Calculator</button>"
 	$("#profile").append(txt);
 }
 
 function profile_to_calculator() {
-
-
+	document.getElementById("profile").innerHTML="";
+	var heading = document.createElement("h1");  // Create with DOM
+    heading.innerHTML = "Calculator page!";
+    button="<button onclick='return generate_calc()'>New Calculator</button>";
+    $("#calc").append(heading,button);
+    var calculators[];
+    generate_calc();
 }
 
 function profile_to_login() {
@@ -78,4 +85,39 @@ function validateForm() {
     }
 }
 
-//Calc functions/class/object shit
+//Calc functions/class/object
+
+//use math library from mathjs.org
+function Calc () {
+	this.value=0;
+}
+ 
+Calc.prototype.parse = function(string) {
+	this.value=math.eval(string);
+};
+
+function c(val)
+{ 
+document.getElementById("d").value=val;
+}
+function v(val)
+{
+document.getElementById("d").value+=val;
+}
+function e() 
+{ 
+  c(eval(document.getElementById("d").value)) 
+}
+
+
+function generate_calc() {
+	var calc_num = calculators.length;
+	//specialise the text.
+	var text='';
+$("#calc").append(text);
+calculators[calc_num]=new Calc();
+return false;
+}
+
+
+
